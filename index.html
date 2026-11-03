@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>오덴야 단골 만들기 제안</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<style>
+  :root{
+    --bg:#f7f4ef; --paper:#ffffff; --ink:#1f1b16; --sub:#5f574d; --line:#e6dfd4;
+    --red:#b3261e; --red-soft:#f8e9e7; --gold:#b8893e; --gold-soft:#f5ecdc;
+    --dark:#14110e; --green:#2f6b4f; --green-soft:#e6f1eb;
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:Pretendard,-apple-system,BlinkMacSystemFont,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;line-height:1.65;font-size:16px;word-break:keep-all}
+  img{max-width:100%;display:block}
+  .wrap{max-width:880px;margin:0 auto;padding:0 20px}
+
+  /* hero */
+  .hero{position:relative;background:var(--dark);color:#fff;overflow:hidden}
+  .hero img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:.6}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(20,17,14,.55) 0%,rgba(20,17,14,.82) 70%,rgba(20,17,14,.95) 100%)}
+  .hero .in{z-index:1}
+  .hero .in{position:relative;max-width:880px;margin:0 auto;padding:96px 20px 56px}
+  .tag{display:inline-block;font-size:13px;letter-spacing:.08em;color:#f3d9a4;border:1px solid rgba(243,217,164,.5);border-radius:999px;padding:4px 12px;margin-bottom:18px}
+  .hero h1{font-size:34px;line-height:1.3;margin:0 0 14px;font-weight:800}
+  .hero p{font-size:17px;margin:0;color:#efe8de;max-width:560px}
+  .hero .meta{margin-top:26px;font-size:13px;color:#cfc5b7}
+
+  section{padding:48px 0;border-bottom:1px solid var(--line)}
+  .num{font-size:13px;font-weight:700;color:var(--red);letter-spacing:.06em}
+  h2{font-size:25px;line-height:1.35;margin:6px 0 10px;font-weight:800}
+  h3{font-size:18px;margin:26px 0 10px;font-weight:700}
+  .lead{color:var(--sub);margin:0 0 22px}
+  p{margin:0 0 12px}
+
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .card .k{font-size:13px;color:var(--sub);margin-bottom:6px;font-weight:600}
+  .card .v{font-size:17px;font-weight:700;line-height:1.45}
+  .card.good{border-color:#cfe3d7;background:var(--green-soft)}
+  .card.bad{border-color:#efd3cf;background:var(--red-soft)}
+  .card.dir{border-color:#ead9b8;background:var(--gold-soft)}
+
+  table{width:100%;border-collapse:collapse;background:var(--paper);border:1px solid var(--line);border-radius:12px;overflow:hidden;font-size:15px}
+  th,td{padding:11px 12px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+  th{background:#f1ece4;font-weight:700;font-size:14px}
+  tr:last-child td{border-bottom:0}
+  td.x{color:var(--red);font-weight:600}
+  td.o{color:var(--green);font-weight:600}
+  .tbl{overflow-x:auto;-webkit-overflow-scrolling:touch}
+
+  .stat{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:14px 0 6px}
+  .stat div{background:var(--paper);border:1px solid var(--line);border-radius:12px;padding:16px}
+  .stat b{display:block;font-size:24px;font-weight:800;color:var(--ink)}
+  .stat span{font-size:13px;color:var(--sub)}
+
+  .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;counter-reset:f}
+  .flow div{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px;position:relative}
+  .flow div::before{counter-increment:f;content:counter(f);position:absolute;top:-10px;left:14px;background:var(--red);color:#fff;font-weight:700;font-size:13px;width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+  .flow b{display:block;margin:6px 0 4px;font-size:16px}
+  .flow p{font-size:14px;color:var(--sub);margin:0}
+
+  .promo{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .pc{background:var(--paper);border:1px solid var(--line);border-radius:16px;padding:20px;position:relative}
+  .pc.hl{border:2px solid var(--gold);background:linear-gradient(180deg,#fffaf0,#fff)}
+  .pc .ttl{font-size:18px;font-weight:800;margin:4px 0 8px}
+  .pc .why{font-size:14px;color:var(--sub);margin-bottom:10px}
+  .pc ul{margin:0;padding-left:18px;font-size:15px}
+  .pc li{margin-bottom:4px}
+  .ex{display:inline-block;font-size:12px;font-weight:700;color:var(--gold);background:var(--gold-soft);border-radius:6px;padding:2px 8px}
+  .coupon{margin-top:12px;border:1.5px dashed var(--red);border-radius:12px;padding:12px 14px;background:#fff8f7}
+  .coupon .c1{font-size:12px;color:var(--red);font-weight:700}
+  .coupon .c2{font-size:17px;font-weight:800;margin:2px 0}
+  .coupon .c3{font-size:13px;color:var(--sub)}
+  .note{font-size:14px;color:var(--sub);background:#f1ece4;border-radius:10px;padding:12px 14px;margin-top:14px}
+
+  ul.check{list-style:none;padding:0;margin:0}
+  ul.check li{position:relative;padding:10px 0 10px 30px;border-bottom:1px dashed var(--line)}
+  ul.check li:last-child{border-bottom:0}
+  ul.check li::before{content:"";position:absolute;left:2px;top:15px;width:16px;height:16px;border:2px solid var(--red);border-radius:4px}
+  ul.check b{font-weight:700}
+
+  .ba{display:grid;grid-template-columns:1fr 1.25fr;gap:10px;margin-bottom:22px;align-items:start}
+  .ba figure{margin:0;position:relative}
+  .ba img{border-radius:12px;width:100%}
+  .lab{position:absolute;top:10px;left:10px;font-size:12px;font-weight:700;padding:3px 9px;border-radius:6px;background:rgba(0,0,0,.6);color:#fff}
+  .lab.ai{background:var(--gold);color:#1f1b16}
+  .cap{font-size:14px;color:var(--sub);margin:8px 2px 0}
+  .scene{margin-bottom:28px}
+  .scene .row{display:grid;grid-template-columns:1fr 1.6fr;gap:10px;align-items:start}
+  .scene figure{margin:0;position:relative}
+  .scene img{border-radius:12px;width:100%}
+
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .box{background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:18px}
+  .box h4{margin:0 0 8px;font-size:16px}
+  .box ul{margin:0;padding-left:18px;font-size:15px}
+  .box li{margin-bottom:4px}
+
+  .steps{display:grid;gap:12px}
+  .step{display:grid;grid-template-columns:110px 1fr;gap:14px;background:var(--paper);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+  .step .when{font-weight:800;color:var(--red)}
+  .step ul{margin:0;padding-left:18px;font-size:15px}
+
+  footer{padding:40px 0 60px;color:var(--sub);font-size:13px}
+  .closing{background:var(--dark);color:#fff;border-radius:18px;padding:26px 22px;margin-top:8px}
+  .closing h3{margin:0 0 8px;color:#f3d9a4}
+  .closing p{color:#e8e0d4;margin:0}
+
+  @media (max-width:720px){
+    .hero .in{padding:80px 20px 44px}
+    .hero h1{font-size:28px}
+    h2{font-size:22px}
+    .cards,.stat{grid-template-columns:1fr}
+    .flow{grid-template-columns:1fr 1fr;row-gap:20px}
+    .promo,.two{grid-template-columns:1fr}
+    .ba,.scene .row{grid-template-columns:1fr;position:relative}
+    .ba figure:first-child,.scene .row figure:first-child{position:absolute;top:10px;right:10px;width:36%;z-index:2}
+    .ba figure:first-child img,.scene .row figure:first-child img{border:2px solid #fff;border-radius:10px;box-shadow:0 4px 14px rgba(0,0,0,.35)}
+    .ba figure:first-child .lab,.scene .row figure:first-child .lab{top:6px;left:6px;font-size:11px;padding:2px 7px}
+    .step{grid-template-columns:1fr;gap:6px}
+    table{font-size:14px}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <img src="s_hall_a.jpg" alt="">
+  <div class="in">
+    <span class="tag">ODENYA · 운영 제안</span>
+    <h1>한 번 온 손님이<br>다시 찾는 오뎅바 만들기</h1>
+    <p>맛은 이미 손님들이 인정했습니다. 이제 네이버 플레이스와 인스타그램을 단골을 붙잡고 다시 부르는 도구로 바꿔보면 어떨까 해서 정리해 봤습니다.</p>
+    <div class="meta">네이버 플레이스와 인스타그램에 공개된 정보를 바탕으로 정리했습니다.</div>
+  </div>
+</header>
+
+<main class="wrap">
+
+<section>
+  <div class="num">01 · 한눈에 보기</div>
+  <h2>강점은 확실하고, 다시 오게 하는 장치가 비어 있습니다</h2>
+  <div class="cards">
+    <div class="card good"><div class="k">이미 잘 되고 있는 것</div><div class="v">키워드 리뷰 참여자 29명 전원이 "음식이 맛있어요"</div></div>
+    <div class="card bad"><div class="k">비어 있는 것</div><div class="v">다시 연락할 통로, 예약, 사진, 주류 메뉴, 답글</div></div>
+    <div class="card dir"><div class="k">제안 방향</div><div class="v">단골 만들기 · 재방문 유도 · 처음 온 손님 이탈 방지</div></div>
+  </div>
+</section>
+
+<section>
+  <div class="num">02 · 지금 상태</div>
+  <h2>네이버와 인스타, 지금 이렇게 보입니다</h2>
+  <div class="stat">
+    <div><b>31</b><span>네이버 리뷰 (방문자 26 · 키워드 3 · 블로그 2)</span></div>
+    <div><b>10개 중 9개</b><span>최근 리뷰 중 '첫 방문' 리뷰</span></div>
+    <div><b>9 / 9</b><span>인스타 게시물 / 팔로워</span></div>
+  </div>
+  <div class="tbl"><table>
+    <tr><th style="width:28%">항목</th><th>지금</th><th style="width:36%">손님 입장에서</th></tr>
+    <tr><td>업체 사진</td><td class="x">7장 (낮 외관 1장, 빈 홀 6장)</td><td>분위기와 음식이 잘 안 보임</td></tr>
+    <tr><td>메뉴</td><td class="x">25개 중 사진은 절반, 주류는 0개</td><td>'사케바'인데 어떤 술이 있는지 모름</td></tr>
+    <tr><td>예약 · 문의</td><td class="x">네이버 예약 없음, 톡톡 없음</td><td>회식 예약하려면 전화뿐</td></tr>
+    <tr><td>소식</td><td class="x">1건 (오픈 안내)</td><td>새 소식이 없어 다시 볼 이유가 없음</td></tr>
+    <tr><td>리뷰 답글</td><td class="x">0건 / 26건</td><td>남긴 리뷰에 반응이 없음</td></tr>
+    <tr><td>쿠폰</td><td class="o">알림받기 쿠폰 있음 (리뷰 시 음료 1)</td><td>좋은 출발점, 재방문용으로 확장 가능</td></tr>
+    <tr><td>인스타</td><td class="x">사진 1장짜리 9개, 릴스 0, 하이라이트 0</td><td>계정에 들어와도 분위기를 알기 어려움</td></tr>
+  </table></div>
+</section>
+
+<section>
+  <div class="num">03 · 왜 '단골'인가</div>
+  <h2>이 상권은 같은 사람이 자주 오는 곳입니다</h2>
+  <div class="two">
+    <div class="box">
+      <h4>건물과 주변</h4>
+      <ul>
+        <li>테라타워는 2,128여 호실 중 약 380개가 상가이고 나머지는 사무실인 대형 지식산업센터입니다 (언론 보도 기준).</li>
+        <li>기숙사 252실, 주차 2,007대, 주변 아파트 단지까지 매일 같은 사람이 오가는 상권입니다.</li>
+        <li>무료 주차 5시간, 단체석 10~38명, 룸 2~4명은 회식 수요에 딱 맞는 조건입니다.</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h4>리뷰가 보여주는 것</h4>
+      <ul>
+        <li>"동네에 오뎅바가 생겨서 좋아요", "이틀 뒤 또 방문", "오픈하고 벌써 n번째"</li>
+        <li>밀가루 없는 오뎅, 국물, 쿠시카츠, 가라아게, 음악, 빔프로젝터 야구 중계가 칭찬받고 있습니다.</li>
+        <li>11월부터 2월까지는 오뎅과 연말 회식 시즌이라 단골을 만들기 가장 좋은 시기입니다.</li>
+      </ul>
+    </div>
+  </div>
+  <p class="note">그래서 광고로 새 손님을 계속 끌어오기보다, 한 번 온 손님을 한 달에 한 번 더 오게 만드는 쪽이 매출에 더 크게 남는다고 봤습니다.</p>
+</section>
+
+<section>
+  <div class="num">04 · 손님 흐름 설계</div>
+  <h2>처음 본 순간부터 단골이 될 때까지</h2>
+  <div class="flow">
+    <div><b>검색해서 처음 봄</b><p>먹음직한 사진, 주류 메뉴, 첫 방문 혜택, 답글로 "여기 가보자"를 만듭니다.</p></div>
+    <div><b>첫 방문</b><p>테이블 QR로 네이버 '알림받기'를 누르게 합니다. 다시 연락할 통로가 생깁니다.</p></div>
+    <div><b>2~3주 뒤</b><p>톡톡 메시지와 소식으로 '다음 방문 혜택', '이달의 메뉴'를 보냅니다.</p></div>
+    <div><b>단골</b><p>보틀 키핑, 스탬프, 회식 예약 혜택으로 떠나지 않고 동료를 데려오게 합니다.</p></div>
+  </div>
+  <p class="note">핵심은 <b>네이버 톡톡 연결</b>입니다. 톡톡이 연결돼야 알림받기 고객과 최근 방문 고객에게 쿠폰과 소식을 보낼 수 있고, 알림받기 고객에게는 네이버 앱 알림도 갑니다. 지금은 연결돼 있지 않아 1순위로 제안드립니다.</p>
+</section>
+
+<section>
+  <div class="num">05 · 다시 올 이유 만들기</div>
+  <h2>프로모션 아이디어</h2>
+  <p class="lead">할인 폭과 금액은 원가와 마진을 보시고 정하시면 됩니다. 아래 숫자 자리는 모두 예시입니다.</p>
+  <div class="promo">
+
+    <div class="pc hl">
+      <span class="ex">추천 1</span>
+      <div class="ttl">테라타워 팀회식 지원</div>
+      <div class="why">같은 건물 사무실이 가장 가까운 단골 후보입니다. 한 팀이 만족하면 다음 회식도 여기로 옵니다.</div>
+      <ul>
+        <li>테라타워 입주사 사원증이나 명함 확인 시 적용</li>
+        <li>네이버 예약에 '팀회식 단체석(10~38명)' 상품 개설</li>
+        <li>무료 주차 5시간, 빔프로젝터, 단체석을 한 장에 안내</li>
+        <li>회식 후 '다음 회식 쿠폰' 전달</li>
+      </ul>
+      <div class="coupon"><div class="c1">예시 쿠폰</div><div class="c2">팀회식 8인 이상 예약 시<br>프리미엄 사케 "○○○" ○○% 할인</div><div class="c3">+ 웰컴 오뎅 모둠 1접시 · 테라타워 입주사 한정</div></div>
+    </div>
+
+    <div class="pc hl">
+      <span class="ex">추천 2</span>
+      <div class="ttl">얼리버드 (일찍 오는 손님)</div>
+      <div class="why">오픈 직후 비는 시간을 채우고, 퇴근하자마자 오는 1차 손님을 먼저 잡습니다.</div>
+      <ul>
+        <li>17:00~18:30 입장 손님 대상</li>
+        <li>생맥주, 하이볼, 오뎅 1꼬치 중 하나를 혜택으로</li>
+        <li>인스타 스토리로 "오늘 얼리버드 자리 있어요" 안내</li>
+      </ul>
+      <div class="coupon"><div class="c1">예시 쿠폰</div><div class="c2">18:30 전 입장 시<br>생맥주·하이볼 ○,○○○원 할인</div><div class="c3">평일 한정 · 1인 1잔</div></div>
+    </div>
+
+    <div class="pc hl">
+      <span class="ex">추천 3</span>
+      <div class="ttl">프리미엄 주류 (사케·위스키)</div>
+      <div class="why">마진이 높고 '사케바' 콘셉트와 맞습니다. 회식 한 번의 객단가를 크게 올릴 수 있습니다.</div>
+      <ul>
+        <li>네이버 메뉴에 주류를 사진과 함께 등록 (지금 0개)</li>
+        <li>'이달의 사케' 1병을 정해 소식과 인스타로 소개</li>
+        <li>회식·예약 손님에게 조건부 할인으로 연결</li>
+        <li>다 못 마신 병은 보틀 키핑으로 다음 방문 이유 만들기</li>
+      </ul>
+      <div class="coupon"><div class="c1">예시 쿠폰</div><div class="c2">이달의 사케 "○○○"<br>예약 손님 ○○% 할인</div><div class="c3">정가 ○○,○○○원 · 보틀 키핑 가능</div></div>
+    </div>
+
+    <div class="pc">
+      <span class="ex">기본</span>
+      <div class="ttl">첫 방문 → 다음 방문 쿠폰</div>
+      <ul>
+        <li>지금 있는 알림받기 쿠폰(리뷰 시 음료 1) 유지</li>
+        <li>테이블마다 QR 안내로 알림받기 유도</li>
+        <li>월 1회 톡톡 메시지로 '다음 방문 쿠폰' 발송 (2주 안에 사용)</li>
+      </ul>
+    </div>
+
+    <div class="pc">
+      <span class="ex">기본</span>
+      <div class="ttl">이달의 한정 메뉴</div>
+      <ul>
+        <li>매달 한정 오뎅이나 안주 1가지</li>
+        <li>인스타에 이미 쓰신 "하루 3개 한정" 같은 표현을 네이버 메뉴 이름에도 적용</li>
+        <li>소식과 톡톡으로 알려 매달 새로 올 이유 만들기</li>
+      </ul>
+    </div>
+
+    <div class="pc">
+      <span class="ex">기본</span>
+      <div class="ttl">스탬프 · 보틀 키핑</div>
+      <ul>
+        <li>방문 스탬프 (예: 5회 방문 시 오뎅 모둠)</li>
+        <li>사케·위스키 키핑 시 이름표와 보관</li>
+        <li>키핑한 술은 단골이 다시 오는 가장 확실한 이유</li>
+      </ul>
+    </div>
+
+  </div>
+  <p class="note">할인은 실제로 받는 정가를 기준으로 표시하는 게 안전합니다. 회식, 예약, 얼리버드처럼 조건을 붙이면 '할인받는 느낌'은 살리면서 마진은 지킬 수 있습니다.</p>
+</section>
+
+<section>
+  <div class="num">06 · 사진</div>
+  <h2>사진은 이렇게 만들거나 찍어야 합니다</h2>
+  <p class="lead">대표님이 올리신 사진을 바탕으로 AI로 연출 예시를 만들어 봤습니다. 음식 종류, 그릇, 담음새는 그대로 두고 조명과 배경, 김, 술잔만 바꿨습니다.</p>
+
+  <h3>메뉴 사진</h3>
+  <div class="ba">
+    <figure><img src="m_odeng_b.jpg" alt="오뎅 원본"><span class="lab">지금</span></figure>
+    <figure><img src="m_odeng_a.jpg" alt="오뎅 AI 예시"><span class="lab ai">AI 예시</span><figcaption class="cap">오뎅: 테이블 매립형 워머에 김이 오르는 장면. 오덴야만의 장면이라 대표 사진으로 쓰기 좋습니다.</figcaption></figure>
+  </div>
+  <div class="ba">
+    <figure><img src="m_karaage_b.jpg" alt="가라아게 원본"><span class="lab">지금</span></figure>
+    <figure><img src="m_karaage_a.jpg" alt="가라아게 AI 예시"><span class="lab ai">AI 예시</span><figcaption class="cap">치킨가라아게: 갓 튀긴 바삭함과 생맥주를 같이 보여주면 술 주문으로 이어집니다.</figcaption></figure>
+  </div>
+  <div class="ba">
+    <figure><img src="m_jokbal_b.jpg" alt="불족발 원본"><span class="lab">지금</span></figure>
+    <figure><img src="m_jokbal_a.jpg" alt="불족발 AI 예시"><span class="lab ai">AI 예시</span><figcaption class="cap">불족발: 어두운 배경에 윤기 나는 소스, 옆에 소주잔.</figcaption></figure>
+  </div>
+  <div class="ba">
+    <figure><img src="m_tomato_b.jpg" alt="얼그레이 토마토 원본"><span class="lab">지금</span></figure>
+    <figure><img src="m_tomato_a.jpg" alt="얼그레이 토마토 AI 예시"><span class="lab ai">AI 예시</span><figcaption class="cap">수제 얼그레이 토마토: 낮은 각도로 토마토를 주인공으로, 뒤에 사케잔.</figcaption></figure>
+  </div>
+
+  <h3>매장 사진: 빈 홀 대신 손님 있는 저녁</h3>
+  <div class="scene">
+    <div class="row">
+      <figure><img src="s_hall_b.jpg" alt="홀 원본"><span class="lab">지금</span></figure>
+      <figure><img src="s_hall_a.jpg" alt="북적이는 홀 AI 예시"><span class="lab ai">AI 예시</span></figure>
+    </div>
+    <p class="cap">금요일 저녁 퇴근 회식: 테이블마다 김 나는 오뎅, 생맥주를 나르는 직원, 빔프로젝터 야구 중계.</p>
+  </div>
+  <div class="scene">
+    <div class="row">
+      <figure><img src="s_serve_b.jpg" alt="바 쪽 원본"><span class="lab">지금</span></figure>
+      <figure><img src="s_serve_a.jpg" alt="회식 서빙 AI 예시"><span class="lab ai">AI 예시</span></figure>
+    </div>
+    <p class="cap">팀회식 서빙 장면: 건배하는 손님과 오뎅을 내려놓는 직원, 생맥주를 따르는 바.</p>
+  </div>
+
+  <div class="two">
+    <div class="box">
+      <h4>직접 찍을 때 체크리스트</h4>
+      <ul>
+        <li>저녁에, 매장 조명 아래에서</li>
+        <li>배경은 어둡게, 빛은 옆에서</li>
+        <li>뜨거운 메뉴는 김이 오를 때 바로</li>
+        <li>45도 정도 비스듬히, 술잔을 같이</li>
+        <li>바쁜 날 손님 동의를 받고 사람 있는 장면</li>
+        <li>직원 손이 나오는 서빙 컷</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h4>꼭 있어야 할 사진 목록</h4>
+      <ul>
+        <li>불 켜진 밤 간판과 입구</li>
+        <li>김 나는 매립형 오뎅 테이블</li>
+        <li>단체석(38석) 회식 세팅, 룸</li>
+        <li>사케·위스키 진열과 잔</li>
+        <li>빔프로젝터 야구 중계</li>
+        <li>주차장 입구와 1층 위치 안내</li>
+      </ul>
+    </div>
+  </div>
+  <p class="note">메뉴 사진은 실제로 나가는 음식과 구성·양이 같아야 합니다. 사진과 다르면 "사진이랑 다르다"는 리뷰로 돌아옵니다. 손님이 나오는 장면은 방향을 보여드리는 AI 예시이고, 실제 게시용은 이 구도를 참고해 매장에서 찍는 것을 권해드립니다.</p>
+</section>
+
+<section>
+  <div class="num">07 · 네이버 플레이스</div>
+  <h2>이렇게 정리하면 좋겠습니다</h2>
+  <ul class="check">
+    <li><b>톡톡 연결 + 0507 스마트콜</b> · 다시 연락할 통로와 통화 기록 확보</li>
+    <li><b>네이버 예약 열기</b> · 일반석 / 룸(2~4명) / 팀회식 단체석(10~38명)</li>
+    <li><b>소개글 다시 쓰기</b> · 밀가루 없는 오뎅과 매일 우린 육수, 테라타워 1층, 무료 주차 5시간, 회식·대관, 아이 동반 가능</li>
+    <li><b>찾아오는 길</b> · 건물 이름 두 가지(한강DIMC테라타워, 현대테라타워)를 같이 적고, 주차 방법 안내</li>
+    <li><b>메뉴</b> · 주류 전체 등록, 오뎅 모둠 세트, 모든 메뉴 사진, "하루 3개 한정" 같은 이름</li>
+    <li><b>사진 20장 이상</b> · 위 06번 목록대로</li>
+    <li><b>소식 주 1회</b> · 이달의 사케, 한정 메뉴, 회식 예약 안내, 휴무 안내</li>
+    <li><b>리뷰 답글</b> · 밀린 26건부터, 이후 주 2회</li>
+    <li><b>place+ 연결</b> · POS를 연결하면 인기 메뉴와 붐비는 시간이 검색 화면에 보입니다 (현재 무료)</li>
+  </ul>
+</section>
+
+<section>
+  <div class="num">08 · 인스타그램</div>
+  <h2>피드는 처음 온 사람용, 스토리는 단골용</h2>
+  <div class="two">
+    <div class="box">
+      <h4>피드 · 처음 들어온 사람</h4>
+      <ul>
+        <li>고정 게시물 3개: 대표 메뉴, 매장 분위기, 위치·주차</li>
+        <li>하이라이트: 메뉴 / 리뷰 / 팀회식 / 오시는 길</li>
+        <li>주 2~3회, 릴스 위주 (김 나는 오뎅통, 회식 현장)</li>
+        <li>해시태그 4개 고정 (#다산술집 #다산오뎅바 #테라타워맛집 #다산회식)</li>
+      </ul>
+    </div>
+    <div class="box">
+      <h4>스토리 · 단골에게 "오늘 갈 이유"</h4>
+      <ul>
+        <li>오늘의 한정 메뉴 남은 수량</li>
+        <li>얼리버드 자리 안내, 야구 중계 일정</li>
+        <li>이달의 사케 입고 소식</li>
+        <li>단골 손님 소개 (동의 받고)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="num">09 · 참고 사례</div>
+  <h2>노원역 A술집에서 가져올 점</h2>
+  <p class="lead">한 건물에서 17년, 네이버 리뷰 5,900여 개, '노원역 술집' 검색 1위인 가게입니다.</p>
+  <div class="tbl"><table>
+    <tr><th style="width:30%">항목</th><th>A술집이 하는 것</th></tr>
+    <tr><td>플레이스</td><td>소개글 5단락, 메뉴 58개 전부 사진과 설명, 메뉴판 이미지 10장</td></tr>
+    <tr><td>예약</td><td>네이버 예약 상품 3개 (연인석, 라운지, 단체석), 톡톡 문의</td></tr>
+    <tr><td>소식</td><td>2년 반 동안 94건: 신메뉴, 신상 술 입고, 주류사 이벤트, 연휴 영업</td></tr>
+    <tr><td>단체 손님</td><td>단체 예약에 맞춤 현수막을 걸고, 그 장면을 인스타 릴스로 올려 다음 단체 예약으로 연결</td></tr>
+    <tr><td>쿠폰</td><td>알림받기 쿠폰과 리뷰 서비스(빙수)</td></tr>
+  </table></div>
+  <p class="note">인스타에 매일 올리지 않는 달에도 네이버 1위를 유지하고 있습니다. 손님을 데려오고 다시 부르는 건 결국 잘 정리된 네이버 플레이스라는 점이 가장 큰 참고 포인트입니다.</p>
+</section>
+
+<section>
+  <div class="num">10 · 진행 순서</div>
+  <h2>이렇게 진행해 보면 어떨까요</h2>
+  <div class="steps">
+    <div class="step"><div class="when">1주차</div><ul><li>톡톡, 예약, 스마트콜 연결</li><li>소개글, 메뉴, 주류, 사진 정리</li><li>밀린 리뷰 답글, 소식 3건</li></ul></div>
+    <div class="step"><div class="when">2~4주차</div><ul><li>팀회식, 얼리버드, 프리미엄 주류 프로모션 시작</li><li>테이블 QR과 알림받기 안내</li><li>인스타 고정 게시물과 하이라이트 정리</li></ul></div>
+    <div class="step"><div class="when">매달</div><ul><li>이달의 사케, 한정 메뉴</li><li>톡톡 메시지 1회, 소식 주 1회</li><li>월간 숫자 점검: 알림받기 수, 재방문 리뷰 비율, 쿠폰 사용, 회식 예약 건수, 프리미엄 주류 판매</li></ul></div>
+  </div>
+  <div class="closing">
+    <h3>대표님 의견을 듣고 맞춰 가겠습니다</h3>
+    <p>프로모션 내용과 할인 폭, 먼저 할 것과 나중에 할 것을 정해 주시면 그에 맞춰 세팅부터 도와드리겠습니다.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="wrap">
+  네이버 플레이스와 인스타그램 공개 정보 기준으로 정리했습니다. 'AI 예시' 표시 사진은 방향을 보여드리기 위한 연출 이미지입니다.
+</footer>
+
+</body>
+</html>
